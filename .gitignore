@@ -1,5 +1,7 @@
-logs
-*.log
-build/
-tmp/
 .env
+bin/
+build/
+dist/
+logs/
+*.log
+
