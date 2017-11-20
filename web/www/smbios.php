@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/vendor/autoload.php';
-$dotenv = new Dotenv\Dotenv(__DIR__ . '../');
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/..');
 $dotenv->load();
 
 $_ENV['MYSQL_HOST'] = getenv('MYSQL_HOST');
