@@ -1,0 +1,18 @@
+@import "~@material/theme/color-palette";
+@import "~material-components-web/dist/material-components-web.css";
+@import "~material-design-icons/iconfont/material-icons.css";
+
+.material-icons.md-valid {
+  color: $material-color-blue-a400;
+}
+
+// bug fix
+.mdc-text-field--textarea .mdc-text-field__input {
+  border: none;
+}
+
+.mdc-text-field--textarea .mdc-text-field__label {
+  left: 2px;
+  top: 19px;
+  border-radius: 2px;
+}
