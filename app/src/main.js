@@ -40,13 +40,13 @@ const dmidecode = async () => {
     let dmidecodePath
     switch (process.platform) {
       case 'darwin':
-        dmidecodePath = './bin/dmidecode-osx'
+        dmidecodePath = path.join(__dirname, '../bin/dmidecode-osx')
         break
       case 'linux':
-        dmidecodePath = './bin/dmidecode-linux'
+        dmidecodePath = path.join(__dirname, '../bin/dmidecode-linux')
         break
       case 'win32':
-        dmidecodePath = './bin/dmidecode-win.exe'
+        dmidecodePath = path.join(__dirname, '../bin/dmidecode-win.exe')
         break
       default:
         throw new Error(`Error: Unsupported platform "${process.platform}"`)

@@ -49,8 +49,7 @@
     "globals": [
       "APP_NAME",
       "APP_VERSION",
-      "REPORT_URL",
-      "NODE_ENV"
+      "REPORT_URL"
     ]
   }
 }
