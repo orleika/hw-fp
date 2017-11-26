@@ -52,6 +52,13 @@ const dmidecode = async () => {
         throw new Error(`Error: Unsupported platform "${process.platform}"`)
     }
     const {stdout, stderr} = await execFile(dmidecodePath)
+    // dmidecode-osx
+    if (process.platform === 'darwin') {
+      if (stdout) {
+        dmidecodeInfo = {status: 'success', data: stdout}
+        return
+      }
+    }
     if (stderr) {
       dmidecodeInfo = {status: 'failed', data: stderr}
     } else {
