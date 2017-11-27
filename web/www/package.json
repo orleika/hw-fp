@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "material-components-web": "^0.25.0"
+    "material-components-web": "^0.25.0",
+    "normalize.css": "^7.0.0"
   }
 }
