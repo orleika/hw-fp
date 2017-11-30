@@ -4,7 +4,7 @@
   "description": "showing smbios on a electron app and reporting it to the research page",
   "main": "dist/main.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production npm run compile && electron-packager . smbios --overwrite --platform=darwin,win32 --arch=x64 --asar --overwrite --ignore=\"^(build|node_modules|src|.babelrc|.gitignore|config.yml*|package*|webpack*)\" --asar.unpack=**/bin/** --out=./build",
+    "build": "cross-env NODE_ENV=production npm run compile && electron-packager . rSMBIOS --overwrite --platform=darwin,win32 --arch=x64 --asar --overwrite --ignore=\"^(build|node_modules|src|.babelrc|.gitignore|config.yml*|package*|webpack*)\" --asar.unpack=**/bin/** --out=./build",
     "compile": "webpack --progress",
     "lint": "standard src/**/*.js",
     "start": "electron .",
