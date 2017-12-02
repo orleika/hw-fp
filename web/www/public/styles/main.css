@@ -19,6 +19,14 @@ a:active, a:hover {
   outline-width: 0;
 }
 
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
 main h2 {
   margin: 56px 0 0;
 }
@@ -114,7 +122,7 @@ a.mdc-list-item:hover {
   display: flex;
   position: relative;
   list-style-type: none;
-  margin-left: 0;
+  padding-left: 0;
 }
 
 .footer__link {
