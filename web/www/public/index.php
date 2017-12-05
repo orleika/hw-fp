@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 if (!isset($_ENV['MYSQL_HOST'])) {
     $dotenv = new \Dotenv\Dotenv(__DIR__ . '/..');
     $dotenv->load();
+    $_ENV['APP_PATH'] = getenv('APP_PATH');
     $_ENV['MYSQL_HOST'] = getenv('MYSQL_HOST');
     $_ENV['MYSQL_DATABASE'] = getenv('MYSQL_DATABASE');
     $_ENV['MYSQL_USER'] = getenv('MYSQL_USER');
@@ -24,12 +25,14 @@ $klein->respond(function ($request, $response, $service, $app) use ($klein) {
     $klein->onError(function ($klein, $err_msg) {
         $klein->service()->flash($err_msg);
     });
+    $service->layout('../app/Views/layouts/base.phtml');
+    $service->appPath = $_ENV['APP_PATH'];
 });
 
 $klein->onHttpError(function ($code, $router) {
     switch ($code) {
         case 404:
-            $router->service()->render('../app/Views/404.html');
+            $router->service()->render('../app/Views/404.phtml');
             break;
         default:
             $router->response()->body('Oh no, a bad error happened that caused a '. $code);
@@ -42,30 +45,25 @@ $klein->respond(['GET', 'POST'], '/[:controller]?/[**:rest]?', function ($reques
         $app->register('controller', function () use ($controller_class, $request, $response, $service, $app) {
             return new $controller_class($request, $response, $service, $app);
         });
-        $response->code(404);
     } else {
         $klein->abort(404);
     }
 });
 
 $klein->respond('GET', '/', function ($request, $response, $service, $app) {
-    $service->render('../app/Views/index.html');
-});
-
-$klein->respond('GET', '/test', function ($request, $response, $service, $app) {
-    $app->controller->index();
+    $service->render('../app/Views/index.phtml');
 });
 
 $klein->respond('POST', '/hwInfo', function ($request, $response, $service, $app) {
     $app->controller->create();
 });
 
-$klein->respond('POST', '/hwFp', function ($request, $response, $service, $app) {
-    $app->controller->create();
+$klein->respond('GET', '/hwFp/[a:token]', function ($request, $response, $service, $app) {
+    $app->controller->index($request->token);
 });
 
-$klein->respond('404', function () use ($klein) {
-    $klein->abort(404);
+$klein->respond('POST', '/hwFp', function ($request, $response, $service, $app) {
+    $app->controller->create();
 });
 
 $klein->dispatch();
