@@ -1,0 +1,46 @@
+<?= $this->partial('../app/Views/layouts/header.phtml'); ?>
+<main class="page">
+  <div class="mdc-toolbar-fixed-adjust"></div>
+  <section class="hero">
+    <div class="hero__image"></div>
+  </section>
+  <div class="page__content">
+    <section>
+      <h2 class="mdc-typography--display1">Hardware Information Viewer&amp;Repoter</h2>
+      <div class="mdc-list-group">
+        <h3 class="mdc-list-group__subheader">rSMBIOS</h3>
+        <nav class="mdc-list mdc-list--two-line mdc-list--avatar-list" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 0 16px;">
+          <a href="#" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+            <span class="mdc-list-item__start-detail" role="presentation">
+              <i class="material-icons" aria-hidden="true">insert_drive_file</i>
+            </span>
+            <span class="mdc-list-item__text">rSMBIOS.zip [.exe; Windows x86]
+              <span class="mdc-list-item__text__secondary">SHA1: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+            </span>
+          </a>
+          <a href="#" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
+            <span class="mdc-list-item__start-detail" role="presentation">
+              <i class="material-icons" aria-hidden="true">insert_drive_file</i>
+            </span>
+            <span class="mdc-list-item__text">rSMBIOS.zip [.app; macOS]
+              <span class="mdc-list-item__text__secondary">SHA1: xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+            </span>
+          </a>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h2 class="mdc-typography--display1">Web Hardware Fingerprinting Site</h2>
+      <p>only access from <em>Hardware Information Viewer&amp;Repoter</em></p>
+    </section>
+    <section>
+      <h2 class="mdc-typography--display1">Analytics Results</h2>
+      <p>TBA</p>
+    </section>
+  </div>
+</main>
+<script src="<?= $this->escape($this->appPath); ?>node_modules/material-components-web/dist/material-components-web.js"></script>
+<?= $this->partial('../app/Views/layouts/footer.phtml'); ?>
+<script>
+  mdc.autoInit()
+</script>

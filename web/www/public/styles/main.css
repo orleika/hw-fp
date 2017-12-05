@@ -19,6 +19,10 @@ a:active, a:hover {
   outline-width: 0;
 }
 
+.hide {
+  display: none;
+}
+
 .material-icons.md-36 {
   font-size: 36px;
 }
@@ -42,7 +46,7 @@ main h2 {
   white-space: nowrap;
 }
 
-.mdc-toolbar__row, .page__content, .footer__content {
+.mdc-toolbar__row, .progress__bar, .page__content, .footer__content {
   max-width: 1000px;
   padding-left: 16px;
   padding-right: 16px;

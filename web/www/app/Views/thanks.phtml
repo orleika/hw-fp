@@ -1,0 +1,22 @@
+<?= $this->partial('../app/Views/layouts/header.phtml'); ?>
+<main class="page">
+  <section class="hero" style="height: 100vh;">
+    <figure id="progress" class="progress__bar" style="width: 100%;">
+      <div role="progressbar" class="mdc-linear-progress">
+        <div class="mdc-linear-progress__buffering-dots"></div>
+        <div class="mdc-linear-progress__buffer"></div>
+        <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+          <span class="mdc-linear-progress__bar-inner"></span>
+        </div>
+        <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+          <span class="mdc-linear-progress__bar-inner"></span>
+        </div>
+      </div>
+      <figcaption>Processing</figcaption>
+    </figure>
+    <div class="hide">
+      <h2 class="mdc-typography--display2">Thank you <i class="material-icons md-48" style="vertical-align: bottom;">sentiment_very_satisfied</i></h2>
+    </div>
+  </section>
+</main>
+<script src="<?= $this->escape($this->appPath); ?>node_modules/material-components-web/dist/material-components-web.js"></script>
