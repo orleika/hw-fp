@@ -1,4 +1,7 @@
-import { ipcRenderer } from 'electron'
+import {
+  ipcRenderer,
+  shell
+} from 'electron'
 
 export const SMBIOS_RECEIVED = 'SMBIOS_RECEIVED'
 export const REPORT_SENDING = 'REPORT_SENDING'
@@ -36,10 +39,14 @@ export const sendReport = (name) => (dispatch, getState) => {
     })
   })
   .then(response => response.json())
-  .then(json => dispatch(reportSent({
-    'action': '',
-    'message': json.result
-  })))
+  .then(json => {
+    const thanksUrl = THANKS_URL + '/' + json.token
+    shell.openExternal(thanksUrl)
+    dispatch(reportSent({
+      'action': '',
+      'message': json.result
+    }))
+  })
   .catch(error => dispatch(errorShowing({
     'action': '',
     'message': error

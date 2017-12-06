@@ -49,7 +49,8 @@ module.exports = [{
     new webpack.DefinePlugin({
       APP_NAME: JSON.stringify(process.env.npm_package_name),
       APP_VERSION: JSON.stringify(process.env.npm_package_version),
-      REPORT_URL: JSON.stringify(config.report_url)
+      REPORT_URL: JSON.stringify(config.report_url),
+      THANKS_URL: JSON.stringify(config.thanks_url)
     }),
     new webpack.ProvidePlugin({
       riot: 'riot'
