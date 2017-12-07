@@ -23,13 +23,16 @@ class HwFpController extends Controller
 
         $input = json_decode($this->request->body());
         try {
-            $this->service->validate($input->token)->notNull();
             $this->service->validate($input->userAgent)->notNull();
-            $this->service->validate($input->worker)->notNull();
-            $this->service->validate($input->memory)->notNull();
-            $this->service->validate($input->crypto)->notNull();
             $this->service->validate($input->math)->notNull();
+            $this->service->validate($input->worker)->notNull();
+            $this->service->validate($input->aes)->notNull();
+            $this->service->validate($input->endian)->notNull();
+            $this->service->validate($input->memory)->notNull();
+            $this->service->validate($input->gpu)->notNull();
+            $this->service->validate($input->gpgpu)->notNull();
             $this->service->validate($input->version)->notNull();
+            $this->service->validate($input->token)->notNull();
         } catch (ValidationException $e) {
             return $this->response->code(400)->json(['error' => 'Bad Request']);
         }
@@ -47,10 +50,13 @@ class HwFpController extends Controller
 
         $hwFp = Models\HwFp::save([
             'userAgent' => $input->userAgent,
-            'worker' => $input->worker,
-            'memory' => $input->memory,
-            'crypto' => $input->crypto,
-            'math' => $input->math,
+            'math' => json_encode((array)$input->math),
+            'worker' => json_encode($input->worker),
+            'aes' => $input->aes,
+            'endian' => $input->endian,
+            'memory' => json_encode($input->memory),
+            'gpu' => json_encode((array)$input->gpu),
+            'gpgpu' => json_encode($input->gpgpu),
             'version' => $input->version,
             'hwInfoId' => $hwInfo->id,
         ]);

@@ -16,14 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `hw_fp`
+-- Table structure for table `hw_fp`
 --
 
-LOCK TABLES `hw_fp` WRITE;
-/*!40000 ALTER TABLE `hw_fp` DISABLE KEYS */;
-INSERT INTO `hw_fp` VALUES (1,'ua','[0, 1, 2]','[0, 1, 2]','[0, 1, 2]','[0, 1, 2]','1.1.1',41,'2017-12-05 03:01:46','2017-12-05 03:01:46',NULL);
-/*!40000 ALTER TABLE `hw_fp` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `hw_fp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hw_fp` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `userAgent` text NOT NULL,
+  `math` text NOT NULL,
+  `worker` text NOT NULL,
+  `aes` text NOT NULL,
+  `endian` text NOT NULL,
+  `memory` text NOT NULL,
+  `gpu` text NOT NULL,
+  `gpgpu` text NOT NULL,
+  `version` text NOT NULL,
+  `hwInfoId` int(10) unsigned NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -34,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-06  6:32:47
+-- Dump completed on 2017-12-07  5:43:28

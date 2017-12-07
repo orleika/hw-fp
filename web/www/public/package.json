@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "gpu.js": "^1.0.0-rc.8",
     "material-components-web": "^0.25.0",
     "normalize.css": "^7.0.0"
   }

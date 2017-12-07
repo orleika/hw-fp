@@ -7,10 +7,13 @@ class HwFp extends Model {
 
     protected $fillable = [
         'userAgent',
-        'worker',
-        'memory',
-        'crypto',
         'math',
+        'worker',
+        'aes',
+        'endian',
+        'memory',
+        'gpu',
+        'gpgpu',
         'version',
         'hwInfoId',
     ];

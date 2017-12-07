@@ -1,5 +1,6 @@
+<canvas id="canvas" width="1" height="1" ></canvas>
 <?= $this->partial('../app/Views/layouts/header.phtml'); ?>
-<input type="hidden" name="token" value="<?= $this->escape($this->token); ?>">
+<input id="token" type="hidden" value="<?= $this->escape($this->token); ?>">
 <main class="page">
   <section class="hero" style="height: 100vh;">
     <figure id="progress" class="progress__bar" style="width: 100%;">
@@ -15,9 +16,67 @@
       </div>
       <figcaption>Processing</figcaption>
     </figure>
-    <div class="hide">
+    <div id="thanks" class="hide">
       <h2 class="mdc-typography--display2">Thank you <i class="material-icons md-48" style="vertical-align: bottom;">sentiment_very_satisfied</i></h2>
     </div>
   </section>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@6/promise.min.js"></script>
 <script src="<?= $this->escape($this->appPath); ?>node_modules/material-components-web/dist/material-components-web.js"></script>
+<script src="<?= $this->escape($this->appPath); ?>node_modules/gpu.js/bin/gpu.min.js"></script>
+<script src="<?= $this->escape($this->appPath); ?>scripts/main.js"></script>
+<script>
+  const appPath = '<?= $this->escape($this->appPath); ?>'
+  const thanks = document.querySelector('#thanks')
+  const progress = document.querySelector('#progress')
+  linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(progress)
+  linearProgress.progress = 0
+
+  const tasks = 5
+  let complete = 0
+  const report = {}
+
+  hwfp.worker(`${appPath}scripts/worker.js`)
+    .then(function(result) {
+      report.worker = result
+      linearProgress.progress = 1 / tasks * ++complete
+      return hwfp.aes()
+    })
+    .then(function(result) {
+      report.aes = result
+      linearProgress.progress = 1 / tasks * ++complete
+      return hwfp.memory()
+    })
+    .then(function (result) {
+      report.memory = result
+      linearProgress.progress = 1 / tasks * ++complete
+      return hwfp.gpu(document.getElementById('canvas'))
+    })
+    .then(function(result) {
+      report.gpu = result
+      linearProgress.progress = 1 / tasks * ++complete
+      return hwfp.gpgpu(GPU)
+    })
+    .then(function(result) {
+      report.gpgpu = result
+      linearProgress.progress = 1 / tasks * ++complete
+
+      fetch(`${appPath}hwFp`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Object.assign({}, report, {
+          token: document.querySelector('#token').value,
+          userAgent: hwfp.userAgent,
+          math: hwfp.math,
+          endian: hwfp.endian,
+          version: hwfp.version
+        }))
+      }).then(function() {
+        progress.classList.add('hide')
+        thanks.classList.remove('hide')
+      })
+    })
+</script>
