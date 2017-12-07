@@ -1,6 +1,6 @@
 {
   "name": "rSMBIOS",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "showing smbios on a electron app and reporting it to the research page",
   "main": "dist/main.js",
   "scripts": {
