@@ -1,25 +1,29 @@
-%% Powered by mermaid 7.1.0
+%% Powered by mermaid 7.1.0 https://mermaidjs.github.io/mermaid-live-editor/
 sequenceDiagram
-    participant Your Device
-    participant Hardware Information Viewer&Reporter
-    participant Web Hardware Fingerprinting Site
+    participant Device
+    participant Hardware Information Report Tool
+    participant Hardware Fingerprinting Site
     participant Database
 
-    activate Your Device
-    Your Device->>Hardware Information Viewer&Reporter: lanuch
-    activate Hardware Information Viewer&Reporter
-    Hardware Information Viewer&Reporter-->>Your Device: show hw-info
-    Hardware Information Viewer&Reporter-xDatabase: report hw-info
-    deactivate Hardware Information Viewer&Reporter
-    activate Database
-    Database-->>Your Device: notify specific fingerprinting site URL
-    deactivate Database
-    Your Device->>Web Hardware Fingerprinting Site: access (with specific query)
-    activate Web Hardware Fingerprinting Site
-    Web Hardware Fingerprinting Site->>Database: report hw-fp
-    activate Database
-    Database-->>Web Hardware Fingerprinting Site: notify complete
-    deactivate Database
-    Web Hardware Fingerprinting Site-->>Your Device: show thank you
-    deactivate Web Hardware Fingerprinting Site
-    deactivate Your Device
+    activate Device
+    Device->>Hardware Information Report Tool: launch
+    activate Hardware Information Report Tool
+    Hardware Information Report Tool-->>Device: show hw-info
+    opt obtain informed consent
+        Device->>Hardware Information Report Tool: agree with the information providing
+        Hardware Information Report Tool->>Database: report hw-info
+        deactivate Hardware Information Report Tool
+        activate Database
+        Database-->>Device: issue a token
+        deactivate Database
+        Device->>Hardware Fingerprinting Site: access with the token
+        activate Hardware Fingerprinting Site
+        Hardware Fingerprinting Site-->>Device: fetch hw-fp scripts
+        deactivate Hardware Fingerprinting Site
+        Device->>Device: run the hw-fp scripts
+        Device->>Database: report hw-fp with the token
+        activate Database
+        Database-->>Device: notify complete, thank you
+        deactivate Database
+        deactivate Device
+    end

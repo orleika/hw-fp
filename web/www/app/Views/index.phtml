@@ -6,35 +6,35 @@
   </section>
   <div class="page__content">
     <section>
-      <h2 class="mdc-typography--display1">Hardware Information Viewer&amp;Repoter</h2>
+      <h2 class="mdc-typography--display1">Hardware Information Report Tool</h2>
       <div class="mdc-list-group">
-        <h3 class="mdc-list-group__subheader">rSMBIOS</h3>
+        <h3 class="mdc-list-group__subheader">rSMBIOS@v0.1.0</h3>
         <nav class="mdc-list mdc-list--two-line mdc-list--avatar-list" style="border: 1px solid rgba(0, 0, 0, 0.1); padding: 0 16px;">
           <a href="/<?= $this->escape($this->appPath); ?>archives/rSMBIOS-win32-x64.zip" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
             <span class="mdc-list-item__start-detail" role="presentation">
               <i class="material-icons" aria-hidden="true">insert_drive_file</i>
             </span>
-            <span class="mdc-list-item__text">Windows (version 0.1.0)
-              <span class="mdc-list-item__text__secondary">File: rSMBIOS-win32-x64.zip; Size: 88.5MB; SHA1: 02fa46a0bb2a00b5f2682aaa68c6c264a93382cd</span>
+            <span class="mdc-list-item__text">Windows (rSMBIOS-win32-x64.zip)
+              <span class="mdc-list-item__text__secondary">Size: <?= number_format(filesize('../public/archives/rSMBIOS-win32-x64.zip')) ?>bytes; SHA1: <?= sha1_file('../public/archives/rSMBIOS-win32-x64.zip') ?></span>
             </span>
           </a>
           <a href="/<?= $this->escape($this->appPath); ?>archives/rSMBIOS-darwin-x64.zip" class="mdc-list-item" data-mdc-auto-init="MDCRipple">
             <span class="mdc-list-item__start-detail" role="presentation">
               <i class="material-icons" aria-hidden="true">insert_drive_file</i>
             </span>
-            <span class="mdc-list-item__text">macOS (version 0.1.0)
-              <span class="mdc-list-item__text__secondary">File: rSMBIOS-darwin-x64.zip; Size: 83.1MB; SHA1: 448e571ba06674a927ce9d32034ade54f3798254</span>
+            <span class="mdc-list-item__text">macOS (rSMBIOS-darwin-x64.zip)
+              <span class="mdc-list-item__text__secondary">Size: <?= number_format(filesize('../public/archives/rSMBIOS-darwin-x64.zip')) ?>bytes; SHA1: <?= sha1_file('../public/archives/rSMBIOS-darwin-x64.zip') ?></span>
             </span>
           </a>
         </ul>
       </div>
     </section>
     <section>
-      <h2 class="mdc-typography--display1">Web Hardware Fingerprinting Site</h2>
-      <p>only access from <em>Hardware Information Viewer&amp;Repoter</em></p>
+      <h2 class="mdc-typography--display1">Hardware Fingerprinting Site</h2>
+      <p>Limit the access of <em>except</em> rSMBIOS to the site.</p>
     </section>
     <section>
-      <h2 class="mdc-typography--display1">Analytics Results</h2>
+      <h2 class="mdc-typography--display1">Analysis Results</h2>
       <p>TBA</p>
     </section>
   </div>

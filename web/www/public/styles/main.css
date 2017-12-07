@@ -74,7 +74,7 @@ main h2 {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  height: 60vh;
+  height: 70vh;
   min-height: 360px;
   background-color: rgba(0, 0, 0, 0.05);
 }
