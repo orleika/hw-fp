@@ -1,4 +1,4 @@
-<canvas id="canvas" width="1" height="1" ></canvas>
+<canvas id="canvas" width="1" height="1" style="position: absolute;"></canvas>
 <?= $this->partial('../app/Views/layouts/header.phtml'); ?>
 <input id="token" type="hidden" value="<?= $this->escape($this->token); ?>">
 <main class="page">
@@ -23,9 +23,9 @@
 </main>
 <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@6/promise.min.js"></script>
-<script src="<?= $this->escape($this->appPath); ?>node_modules/material-components-web/dist/material-components-web.js"></script>
-<script src="<?= $this->escape($this->appPath); ?>node_modules/gpu.js/bin/gpu.min.js"></script>
-<script src="<?= $this->escape($this->appPath); ?>scripts/main.js"></script>
+<script src="/<?= $this->escape($this->appPath); ?>node_modules/material-components-web/dist/material-components-web.js"></script>
+<script src="/<?= $this->escape($this->appPath); ?>node_modules/gpu.js/bin/gpu.min.js"></script>
+<script src="/<?= $this->escape($this->appPath); ?>scripts/main.js"></script>
 <script>
   const appPath = '<?= $this->escape($this->appPath); ?>'
   const thanks = document.querySelector('#thanks')
@@ -37,7 +37,7 @@
   let complete = 0
   const report = {}
 
-  hwfp.worker(`${appPath}scripts/worker.js`)
+  hwfp.worker(`/${appPath}scripts/worker.js`)
     .then(function(result) {
       report.worker = result
       linearProgress.progress = 1 / tasks * ++complete
@@ -62,7 +62,7 @@
       report.gpgpu = result
       linearProgress.progress = 1 / tasks * ++complete
 
-      fetch(`${appPath}hwFp`, {
+      fetch(`/${appPath}hwFp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

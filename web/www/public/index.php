@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 if (!isset($_ENV['MYSQL_HOST'])) {
-    $dotenv = new \Dotenv\Dotenv(__DIR__ . '/..');
+    $dotenv = new \Dotenv\Dotenv(__DIR__ . '/../../');
     $dotenv->load();
     $_ENV['APP_PATH'] = getenv('APP_PATH');
     $_ENV['MYSQL_HOST'] = getenv('MYSQL_HOST');
@@ -13,6 +13,10 @@ if (!isset($_ENV['MYSQL_HOST'])) {
 }
 
 $klein = new \Klein\Klein();
+
+$request = \Klein\Request::createFromGlobals();
+$uri = $request->server()->get('REQUEST_URI');
+$request->server()->set('REQUEST_URI', substr($uri, strlen($_ENV['APP_PATH'])));
 
 try {
     App\Models\DB::connect();
@@ -66,4 +70,4 @@ $klein->respond('POST', '/hwFp', function ($request, $response, $service, $app) 
     $app->controller->create();
 });
 
-$klein->dispatch();
+$klein->dispatch($request);
