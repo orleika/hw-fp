@@ -58,16 +58,36 @@ $klein->respond('GET', '/', function ($request, $response, $service, $app) {
     $service->render('../app/Views/index.phtml');
 });
 
+$klein->respond('GET', '/hwInfo/[**:rest]?', function ($request, $response, $service, $app) use ($klein) {
+    $klein->abort(404);
+});
+
 $klein->respond('POST', '/hwInfo', function ($request, $response, $service, $app) {
     $app->controller->create();
+});
+
+$klein->respond('POST', '/hwInfo/[**:rest]', function ($request, $response, $service, $app) use ($klein) {
+    $klein->abort(404);
 });
 
 $klein->respond('GET', '/hwFp/[a:token]', function ($request, $response, $service, $app) {
     $app->controller->index($request->token);
 });
 
+$klein->respond('GET', '/hwFp', function ($request, $response, $service, $app) use ($klein) {
+    $klein->abort(404);
+});
+
+$klein->respond('GET', '/hwFp/[a:token]/[**:rest]', function ($request, $response, $service, $app) use ($klein) {
+    $klein->abort(404);
+});
+
 $klein->respond('POST', '/hwFp', function ($request, $response, $service, $app) {
     $app->controller->create();
+});
+
+$klein->respond('POST', '/hwFp/[**:rest]', function ($request, $response, $service, $app) use ($klein) {
+    $klein->abort(404);
 });
 
 $klein->dispatch($request);
