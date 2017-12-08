@@ -38,7 +38,7 @@
   let complete = 0
   const report = {}
 
-  hwfp.worker(`/${appPath}scripts/worker.js`)
+  hwfp.worker('/' + appPath + 'scripts/worker.js')
     .then(function(result) {
       report.worker = result
       linearProgress.progress = 1 / tasks * ++complete
@@ -63,7 +63,7 @@
       report.gpgpu = result
       linearProgress.progress = 1 / tasks * ++complete
 
-      fetch(`/${appPath}hwFp`, {
+      fetch('/' + appPath + 'hwFp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
