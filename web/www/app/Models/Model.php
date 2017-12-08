@@ -41,4 +41,14 @@ class Model
 
         return $instance->data;
     }
+
+    public static function where($param, $cond)
+    {
+        $instance = new static;
+
+        $statement = "SELECT * FROM {$instance->table} WHERE {$param} = :cond";
+        $instance->data = DB::fetchAll($statement, ['cond' => $cond]);
+
+        return $instance->data;
+    }
 }

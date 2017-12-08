@@ -48,6 +48,11 @@ class HwFpController extends Controller
             return $this->response->code(400)->json(['error' => 'Bad Request']);
         }
 
+        $hwFp = Models\HwFp::where('hwInfoId', $hwInfo->id)[0];
+        if (!is_null($hwFp)) {
+            return $this->response->code(400)->json(['error' => 'Bad Request']);
+        }
+
         $hwFp = Models\HwFp::save([
             'userAgent' => $input->userAgent,
             'math' => json_encode((array)$input->math),
