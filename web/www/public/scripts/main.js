@@ -30,7 +30,7 @@
             if (taskId < tasks.length) {
               t0 = window.performance.now()
               for (let j = 0; j < tasks[taskId]; j++) {
-                workers[i].postMessage('')
+                workers[j].postMessage('')
               }
             } else {
               resolve(result)
