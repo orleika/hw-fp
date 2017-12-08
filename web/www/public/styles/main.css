@@ -46,12 +46,19 @@ main h2 {
   white-space: nowrap;
 }
 
-.mdc-toolbar__row, .progress__bar, .page__content, .footer__content {
+.mdc-toolbar__row, .page__content, .footer__content {
   max-width: 1000px;
   padding-left: 16px;
   padding-right: 16px;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
+}
+
+.progress__bar {
+  max-width: 1000px;
+  padding-left: 16px;
+  padding-right: 16px;
   box-sizing: border-box;
 }
 
@@ -80,7 +87,8 @@ main h2 {
 }
 
 .hero__image {
-  background: url("../images/hero.svg") center no-repeat;
+  background: url("../images/hero.svg") no-repeat center center;
+  background-size: contain;
   width: 100%;
   height: 85%;
 }

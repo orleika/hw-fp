@@ -24,6 +24,11 @@
 <script src="https://cdn.jsdelivr.net/npm/object.assign-polyfill@1.0.3/object.assign.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@6/promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/webcrypto-shim@0.1.2/webcrypto-shim.min.js"></script>
+<script src="/<?= $this->escape($this->appPath); ?>scripts/typedarray.js"></script>
+<script>
+  if (!Uint16Array.prototype['reverse']) Uint16Array.prototype['reverse'] = Array.prototype['reverse']
+</script>
 <script src="/<?= $this->escape($this->appPath); ?>node_modules/material-components-web/dist/material-components-web.js"></script>
 <script src="/<?= $this->escape($this->appPath); ?>node_modules/gpu.js/bin/gpu.min.js"></script>
 <script src="/<?= $this->escape($this->appPath); ?>scripts/main.js"></script>

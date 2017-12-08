@@ -125,6 +125,12 @@
 
   const gpgpu = function (GPU) {
     return new Promise(function (resolve) {
+      const msie = window.navigator.userAgent.indexOf('MSIE ')
+      const trident = window.navigator.userAgent.indexOf('Trident/')
+      if (msie > 0 || trident > 0) {
+        resolve([])
+      }
+
       const result = []
       const matrixSize = 512
       const a = splitArray(fillArrayRandom(new Array(matrixSize * matrixSize)), matrixSize)
