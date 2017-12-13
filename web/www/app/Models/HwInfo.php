@@ -8,6 +8,7 @@ class HwInfo extends Model {
     protected $fillable = [
         'name',
         'smbios',
+        //'lspci',    // Require elevated command prompt
         'version',
     ];
 }
