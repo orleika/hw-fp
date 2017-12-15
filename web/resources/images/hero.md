@@ -8,22 +8,22 @@ sequenceDiagram
     activate Device
     Device->>Hardware Information Report Tool: launch
     activate Hardware Information Report Tool
-    Hardware Information Report Tool-->>Device: show hw-info
+    Hardware Information Report Tool-->>Device: show hardware information
     opt obtain informed consent
         Device->>Hardware Information Report Tool: agree with the information providing
-        Hardware Information Report Tool->>Database: report hw-info
+        Hardware Information Report Tool->>Database: report hardware information
         deactivate Hardware Information Report Tool
         activate Database
         Database-->>Device: issue a token
         deactivate Database
         Device->>Hardware Fingerprinting Site: access with the token
         activate Hardware Fingerprinting Site
-        Hardware Fingerprinting Site-->>Device: fetch hw-fp scripts
+        Hardware Fingerprinting Site-->>Device: fetch hardware fingerprinting scripts
         deactivate Hardware Fingerprinting Site
-        Device->>Device: run the hw-fp scripts
-        Device->>Database: report hw-fp with the token
+        Device->>Device: run the hardware fingerprint scripts
+        Device->>Database: report hardware fingerprint with the token
         activate Database
-        Database-->>Device: notify complete, thank you
+        Database-->>Device: notify complete
         deactivate Database
         deactivate Device
     end
