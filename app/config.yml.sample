@@ -1,0 +1,5 @@
+default:
+  report_url:
+    - http://example.com/path-to-receiving-report
+  thanks_url:
+    - http://example.com/path-to-thanks-page
