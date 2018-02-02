@@ -126,9 +126,9 @@ Options FollowSymLinks
 
 ## Web Entry point
 - [x] [GET /](#get)
-- [x] [POST /hwInfo](#post-hwInfo)
-- [x] [GET /hwFp/:token](#get-hwFptoken)
-- [x] [POST /hwFp](#post-hwFp)
+- [x] [POST /hwInfo](#post-hwinfo)
+- [x] [GET /hwFp/:token](#get-hwfptoken)
+- [x] [POST /hwFp](#post-hwfp)
 ### GET /
 Respond project home page.
 #### Response
@@ -157,7 +157,7 @@ Recieve rSMBIOS report.
 ### GET /hwFp/:token
 Respond hardware fingerprinting page.
 #### Request
-`token` is the same as `token` in [POST /hwInfo](#post-hwInfo) response.
+`token` is the same as `token` in [POST /hwInfo](#post-hwinfo) response.
 #### Response
 - Status: 200 OK
 - Content-Type: text/html; charset=UTF-8
