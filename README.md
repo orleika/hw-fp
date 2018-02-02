@@ -6,7 +6,7 @@
 ![hero image](web/www/public/images/hero.svg)
 
 ## Build
-### App _(Hardware Information Report Tool)_
+### App _(Hardware Information Report Tool, aka rSMBIOS)_
 - Change directory
 ```
 $ cd app
@@ -36,7 +36,7 @@ $ composer install
 $ cd web
 $ docker-compose up -d
 ```
-- (Select) If you use build-in Apache and Mysql Database. Enabled `FollowSymLinks`.
+- (Select) If you use build-in Apache and Mysql Database. Enabled `FollowSymLinks` into `apache.conf`.
 ```
 Options FollowSymLinks
 ```
@@ -46,7 +46,7 @@ Options FollowSymLinks
 .
 ├── app
 │   ├── config.yml.sample
-│   ├── src (redux archtecture)
+│   ├── src (redux architecture)
 │   │   ├── actions
 │   │   │   └── index.js
 │   │   ├── index.html
@@ -84,17 +84,17 @@ Options FollowSymLinks
     │       ├── emcc.bat
     │       └── emcc.sh
     └── www
-        ├── app
-        │   ├── Controllers (MVC archtecture)
+        ├── app (MVC architecture)
+        │   ├── Controllers
         │   │   ├── Controller.php (Base controller)
         │   │   ├── HwFpController.php (extends base controller)
         │   │   └── HwInfoController.php (extends base controller)
-        │   ├── Models (MVC archtecture)
+        │   ├── Models
         │   │   ├── DB.php (Database connection with Mysql)
         │   │   ├── HwFp.php
         │   │   ├── HwInfo.php
         │   │   └── Model.php (Database basic model)
-        │   └── Views (MVC archtecture)
+        │   └── Views
         │       ├── 404.phtml
         │       ├── index.phtml
         │       ├── layouts (base layout components)
@@ -115,5 +115,74 @@ Options FollowSymLinks
             │   └── worker.js
             └── styles
                 └── main.css
+```
 
+## Web Entity Models
+### Entities
+- `HwFp`
+- `HwInfo`
+### Relations
+- `HwFp` --- `HwInfo`
+
+## Web Entry point
+- [x] [GET /](#get)
+- [x] [POST /hwInfo](#post-hwInfo)
+- [x] [GET /hwFp/:token](#get-hwFptoken)
+- [x] [POST /hwFp](#post-hwFp)
+### GET /
+Respond project home page.
+#### Response
+- Status: 200 OK
+- Content-Type: text/html; charset=UTF-8
+### POST /hwInfo
+Recieve rSMBIOS report.
+#### Request
+- Content-Type: application/json
+```json
+{
+  "name": "[Required: reporter name from rSMBIOS]",
+  "smbios": "[Required: SMBIOS generated from rSMBIOS]",
+  "version": "[Required: rSMBIOS version]"
+}
+```
+#### Response
+- Status: 200 OK
+- Content-Type: application/json
+```json
+{
+  "result": "success",
+  "token": "[a unique token bound HwInfo.id]"
+}
+```
+### GET /hwFp/:token
+Respond hardware fingerprinting page.
+#### Request
+`token` is the same as `token` in [POST /hwInfo](#post-hwInfo) response.
+#### Response
+- Status: 200 OK
+- Content-Type: text/html; charset=UTF-8
+### POST /hwFp
+##### Request
+- Content-Type: application/json
+```json
+{
+  "math": "[Required]",
+  "worker": "[Required]",
+  "aes": "[Required]",
+  "endian": "[Required]",
+  "memory": "[Required]",
+  "gpu": "[Required]",
+  "gpgpu": "[Required]",
+  "version": "[Required: Hardware Fingerprinting Site version]",
+  "token": "[Required: It's the same as POST /hwInfo response]"
+}
+```
+##### Response
+- Status: 200 OK
+- Content-Type: application/json
+```json
+{
+  "result": "success",
+  "hwFp": "[<HwFp> entiry by stored post data]"
+}
 ```
